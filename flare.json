@@ -110,6 +110,17 @@
     {"name": "SpringForce", "size": 1681}
    ]
   },
+    {
+   "name": "test",
+   "children": [
+    {"name": "Test1", "size": 1000},
+    {"name": "Test2", "size": 2000},
+    {"name": "Test3", "size": 3000},
+    {"name": "Test4", "size": 4000},
+    {"name": "Test5", "size": 5000},
+    {"name": "Test6", "size": 6000}
+   ]
+  },
   {
    "name": "query",
    "children": [
