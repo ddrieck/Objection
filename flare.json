@@ -1,5 +1,5 @@
 {
- "name": "flare",
+ "name": "Obvius",
  "children": [
   {
    "name": "PETA v. Doughney (4th Cir. 2001)",
@@ -27,6 +27,23 @@
      "name": "profques",
      "children": [
       {"name": "I don’t understand why it’s bad faith in the PETA case? #profques #profans It’s because Doughney registered multiple domain names that he knew were PETA’s distinctive name.", "size": 4500}
+     ]
+    }
+   ]
+  },
+{
+   "name": "Lamparello v. Falwell (4th Cir. 2005)",
+   "children": [
+    {
+     "name": "facts",
+     "children": [
+      {"name": "Lamparello registered Fallwell.com (extra 'l' in Fall) to respond to Falwell’s opinions about gay people", "size": 4500}
+     ]
+    },
+    {
+     "name": "holding",
+     "children": [
+      {"name": "court says criticism or commentary, no intent to proﬁt (even though there was a link to Amazon) → no bad faith", "size": 4500}
      ]
     }
    ]
