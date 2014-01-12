@@ -1,0 +1,8 @@
+/*:::: FORMS ::::*/
+/* TEXT AREAS - normal, focus, hover */
+textarea {
+  resize: vertical;
+}
+/* TEXT INPUTS - normal, focus, active, hover */
+/* CHECK BOXES - normal, focus, active, hover */
+/* SUBMIT & REGULAR BUTTONS - normal, focus, active, hover */

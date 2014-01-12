@@ -1,117 +1,166 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
-<style>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-.node {
-  cursor: pointer;
-}
+	<title>Wreditor | Write now. Save anywhere.</title>
+	<meta name="description" content="Wreditor is a self-deployable browser-based text editor that'll let you save to anywhere." />
+	<meta name="author" content="Bill Patrianakos" />
+	<link rel="author" href="humans.txt" />
 
-.node:hover {
-  stroke: #000;
-  stroke-width: 1.5px;
-}
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="css/style.css?v=2" />
+	<link href='http://fonts.googleapis.com/css?family=Noto+Sans:400,700|Source+Code+Pro:300,400,700|Inconsolata:400,700|Alike' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="codemirror/lib/codemirror.css">
+	<link rel="stylesheet" href="codemirror/theme/solarized.css" />
+	<link rel="stylesheet" href="codemirror/theme/rubyblue.css" />
+	<link rel="stylesheet" href="codemirror/theme/neat.css">
+	<link rel="stylesheet" href="codemirror/theme/elegant.css">
+	<link rel="stylesheet" href="codemirror/theme/elegantcode.css">
+	<link rel="stylesheet" href="codemirror/theme/eleganttype.css">
+	<link rel="stylesheet" href="codemirror/theme/erlang-dark.css">
+	<link rel="stylesheet" href="codemirror/theme/night.css">
+	<link rel="stylesheet" href="codemirror/theme/newplus.css">
+	<link rel="stylesheet" href="codemirror/theme/monokai.css">
+	<link rel="stylesheet" href="codemirror/theme/cobalt.css">
+	<link rel="stylesheet" href="codemirror/theme/eclipse.css">
+	<link rel="stylesheet" href="codemirror/theme/lesser-dark.css">
+	<link rel="stylesheet" href="codemirror/theme/xq-dark.css">
+	<link rel="stylesheet" href="codemirror/theme/xq-light.css">
+	<link rel="stylesheet" href="codemirror/theme/ambiance.css">
+	<link rel="stylesheet" href="codemirror/theme/blackboard.css">
+	<link rel="stylesheet" href="codemirror/theme/vibrant-ink.css">
+	<link rel="stylesheet" href="codemirror/theme/twilight.css">
 
-.node--root {
-  stroke: #777;
-  stroke-width: 2px;
-}
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<script src="js/libs/respond.min.js" type="text/javascript"></script>
+	<![endif]-->
 
-.node--leaf {
-  fill: white;
-}
+	<!--[if gte IE 9]>
+	<style type="text/css">
+	.gradient { filter: none; }
+	</style>
+	<![endif]-->
 
-.label {
-  font: 11px "Helvetica Neue", Helvetica, Arial, sans-serif;
-  text-anchor: middle;
-  text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;
-}
+	<!-- Temporary test styles -->
+	<style type="text/css">
+		/* Cursor height and position (don't use with line wrapping) */
+		/*.CodeMirror pre {
+			height:25px;
+			top: 0px;
+		}*/
 
-.label,
-.node--root,
-.node--leaf {
-  pointer-events: none;
-}
+		html, body {
+			min-height: 100%;
+			margin: 0;
+		}
 
-</style>
+		.save {
+			position: absolute;
+			top: 5px;
+			right: 20px;
+			font-size: 30px;
+		}
+
+		.options {
+			position: absolute;
+			top: 5px;
+			right: 60px;
+			font-size: 30px;
+		}
+
+		.distraction-free, .resize {
+			position: absolute;
+			top: 5px;
+			right: 100px;
+			font-size: 30px;
+			z-index: 999;
+		}
+
+	</style>
+
+</head>
+
 <body>
-<script src="http://d3js.org/d3.v3.min.js"></script>
-<script>
+<span class="options"><a href="#"><i class="icon-cog"></i></a></span>
+<span class="distraction-free"><a href="#"><i class="icon-resize-full"></i></a></span>
+<span class="resize hidden"><a href="#"><i class="icon-resize-small"></i></a></span>
+<span class="save"><a href="#"><i class="icon-save"></i></a></span>
+	<header class="container">
+	<h1>Obvius</h1>
+		<section class="row">
+			<article class="twelve">
+				<p>
+					<select onChange="selectTheme()" id="select">
+						<option value="default" selected>Theme</option>
+						<option value="ambiance">Ambiance</option>
+						<option value="blackboard">Blackboard</option>
+						<option value="cobalt">Cobalt</option>
+						<option value="eclipse">Eclipse</option>
+						<option value="elegant">Elegant</option>
+						<option value="elegantcode">Elegant Code</option>
+						<option value="eleganttype">Elegant Type</option>
+						<option value="erlang-dark">Erlang-dark</option>
+						<option value="lesser-dark">Lesser-dark</option>
+						<option value="monokai">Monokai</option>
+						<option value="neat">Neat</option>
+						<option value="night">Night</option>
+						<option value="newplus">New Plus</option>
+						<option value="rubyblue">Rubyblue</option>
+						<option value="solarized dark">Solarized (dark)</option>
+						<option value="solarized light">Solarized (light)</option>
+						<option value="twilight">Twilight</option>
+						<option value="vibrant-ink">Vibrant-ink</option>
+						<option value="xq-dark">Xq-dark</option>
+						<option value="xq-light">Xq-light</option>
+					</select>
+					<a id="linesOn" href="index.html">Write</a> | <a id="linesOff" href="canvas.html">Canvas</a>
+				</p>
+			</article>
+		</section>
+	</header>
+	<section id="main-container" class="container newplus">
+		<section class="row">
+			<article class="twelve">
+				<form>
+					<input type="text" name="title" placeholder="Title" class="settings title" style="display:none;" />
+					<br />
+<textarea id="editor" name="editor">
 
-var margin = 10,
-    outerDiameter = 960,
-    innerDiameter = outerDiameter - margin - margin;
+</textarea>
+				</form>
+			</article>
+		</section>
+	</section>
+	<footer class="container">
 
-var x = d3.scale.linear()
-    .range([0, innerDiameter]);
+	</footer>
 
-var y = d3.scale.linear()
-    .range([0, innerDiameter]);
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="js/libs/jquery1.9.1.min.js"><\/script>')</script>
+	<script src="codemirror/lib/codemirror.js"></script>
+	<script src="codemirror/mode/markdown/markdown.js"></script>
+	<script src="codemirror/addon/edit/closebrackets.js"></script>
+	<!-- script src="js/blob.js"></script>
+	<script src="js/blobbuilder.js"></script -->
+	<script src="js/filesaver.min.js"></script>
+	<script src="js/plugins.js"></script>
+	<script src="js/scripts.js"></script>
+	<script>
+		// Testing filesaver functionality
+		/*var blob = new Blob(["Hello, world!"], {type: "text/plain;charset=utf-8"});
+		saveAs(blob, "hello_world.txt");*/
+	</script>
 
-var color = d3.scale.linear()
-    .domain([-1, 5])
-    .range(["hsl(152,80%,80%)", "hsl(228,30%,40%)"])
-    .interpolate(d3.interpolateHcl);
+	<!--[if lt IE 7 ]>
+	<script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
+	<script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
+	<![endif]-->
 
-var pack = d3.layout.pack()
-    .padding(2)
-    .size([innerDiameter, innerDiameter])
-    .value(function(d) { return d.size; })
-
-var svg = d3.select("body").append("svg")
-    .attr("width", outerDiameter)
-    .attr("height", outerDiameter)
-  .append("g")
-    .attr("transform", "translate(" + margin + "," + margin + ")");
-
-d3.json("flare.json", function(error, root) {
-  var focus = root,
-      nodes = pack.nodes(root);
-
-  svg.append("g").selectAll("circle")
-      .data(nodes)
-    .enter().append("circle")
-      .attr("class", function(d) { return d.parent ? d.children ? "node" : "node node--leaf" : "node node--root"; })
-      .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
-      .attr("r", function(d) { return d.r; })
-      .style("fill", function(d) { return d.children ? color(d.depth) : null; })
-      .on("click", function(d) { return zoom(focus == d ? root : d); });
-
-  svg.append("g").selectAll("text")
-      .data(nodes)
-    .enter().append("text")
-      .attr("class", "label")
-      .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
-      .style("fill-opacity", function(d) { return d.parent === root ? 1 : 0; })
-      .style("display", function(d) { return d.parent === root ? null : "none"; })
-      .text(function(d) { return d.name; });
-
-  d3.select(window)
-      .on("click", function() { zoom(root); });
-
-  function zoom(d, i) {
-    var focus0 = focus;
-    focus = d;
-
-    var k = innerDiameter / d.r / 2;
-    x.domain([d.x - d.r, d.x + d.r]);
-    y.domain([d.y - d.r, d.y + d.r]);
-    d3.event.stopPropagation();
-
-    var transition = d3.selectAll("text,circle").transition()
-        .duration(d3.event.altKey ? 7500 : 750)
-        .attr("transform", function(d) { return "translate(" + x(d.x) + "," + y(d.y) + ")"; });
-
-    transition.filter("circle")
-        .attr("r", function(d) { return k * d.r; });
-
-    transition.filter("text")
-      .filter(function(d) { return d.parent === focus || d.parent === focus0; })
-        .style("fill-opacity", function(d) { return d.parent === focus ? 1 : 0; })
-        .each("start", function(d) { if (d.parent === focus) this.style.display = "inline"; })
-        .each("end", function(d) { if (d.parent !== focus) this.style.display = "none"; });
-  }
-});
-
-d3.select(self.frameElement).style("height", outerDiameter + "px");
-
-</script>
+</body>
+</html>

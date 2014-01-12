@@ -1,0 +1,26 @@
+/* SITE CREDITS: These humans made this site possible: */
+/* See http://humanstxt.org for more on this standard */
+
+
+/* TEAM */
+  Creator: Bill Patrianakos
+  Site: http://wreditor.writeapp.org
+  Twitter: @writeappme
+  Location: Chicago
+
+/* THANKS */
+  To the users of Write.app without whom I'd have never come so far in this project or as a developer
+  And to the developer of CodeMirror
+
+/* SITE */
+  Standards: HTML5, CSS3
+  Components: jQuery, LESS, Fraction.less Boilerplate, CodeMirror
+  Software: Sublime Text 2
+  Last updated: 2013/04/02
+  Language: English
+  Doctype: html
+
+
+
+
+   # Wreditor was built on Fraction.less http://fractionless.info

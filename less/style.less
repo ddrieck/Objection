@@ -1,0 +1,72 @@
+/*:::: Main Stylesheet ::::*/
+
+@import url('grid.less'); 			// Grid system
+@import url('colors.less'); 		// Site-wide colors
+@import url('mixins.less'); 		// Mixins
+@import url('normalize.less'); 		// CSS reset
+@import url('type.less'); 			// Typography
+@import url('font-awesome.less'); 	// Iconography
+@import url('forms.less'); 			// Form styles
+
+/*:::: YOUR STYLES HERE ::::*/
+
+header {
+	background: @white;
+	.box-shadow(0, 2px, 9px, @black);
+	margin-bottom: 6px;
+	& p {
+		top: 0;
+	}
+}
+
+.ambiance {
+	background: #E6E1DC;
+}
+
+.blackboard {
+	background: #0C1021;
+}
+
+.cobalt {
+	background: #002240;
+}
+
+.eclipse {
+	background: #fff;
+}
+
+.elegant {
+	background: #fff;
+}
+
+.monokai {
+	background: #272822;
+}
+
+.neat {
+	background: ##fff;
+}
+
+.night {
+	background: #0a001f;
+}
+
+.newplus {
+	background: #282a36;
+}
+
+.rubyblue {
+	background: #112435;
+}
+
+.twilight {
+	background: #141414;
+}
+
+.CodeMirror-gutters {}
+
+
+/*:::: No styles below this line ::::*/
+@import url('helpers.less'); 	// Helper classes
+@import url('mobile.less'); 	// Media queries for mobile
+@import url('print.less'); 		// Print styles
